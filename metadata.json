@@ -1,0 +1,6 @@
+{
+  "name": "AI College Helper",
+  "description": "A clean, mobile-friendly study assistant for college students to ask questions, simplify topics, create study notes, practice exam questions, and explain code.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
