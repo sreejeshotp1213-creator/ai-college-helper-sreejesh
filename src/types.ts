@@ -33,3 +33,44 @@ export interface AssistResponse {
   error?: string;
 }
 
+export interface AttachedImage {
+  data: string; // base64 string
+  mimeType: string;
+  name: string;
+  previewUrl: string;
+}
+
+export interface AttachedFile {
+  data?: string; // base64 for binary/pdf
+  text?: string; // plain text for code/txt
+  mimeType: string;
+  name: string;
+  size: number;
+}
+
+export interface ChatMessage {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+  feature?: FeatureType;
+  image?: {
+    previewUrl: string;
+    name?: string;
+  };
+  file?: {
+    name: string;
+    size: number;
+    mimeType: string;
+  };
+  timestamp: number;
+  error?: boolean;
+}
+
+export interface ChatSession {
+  id: string;
+  title: string;
+  messages: ChatMessage[];
+  createdAt: number;
+  updatedAt: number;
+}
+

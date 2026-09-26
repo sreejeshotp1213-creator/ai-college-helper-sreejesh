@@ -280,14 +280,14 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
           id="back-to-input-btn"
           type="button"
           onClick={onNewQuestion}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 hover:text-blue-700 bg-white border border-slate-200 hover:border-slate-300 px-3 py-2 rounded-xl min-h-[40px] shadow-2xs transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 px-3 py-2 rounded-xl min-h-[38px] shadow-2xs transition-all cursor-pointer"
         >
-          <ArrowLeft className="w-3.5 h-3.5" />
-          <span>Ask Another</span>
+          <ArrowLeft className="w-3.5 h-3.5 text-slate-500" />
+          <span>New Question</span>
         </button>
 
         <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-          <span className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 text-white shadow-2xs">
             {getBadgeIcon()}
             {currentFeature.shortLabel}
           </span>
@@ -297,15 +297,15 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
               id="speech-toggle-btn"
               type="button"
               onClick={handleToggleSpeech}
-              className={`inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-xl min-h-[38px] border transition-colors ${
+              className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-xl min-h-[38px] border transition-all cursor-pointer shadow-2xs ${
                 isSpeaking
                   ? 'bg-blue-600 text-white border-blue-600 animate-pulse'
-                  : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
+                  : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50 hover:border-slate-300'
               }`}
-              title={isSpeaking ? 'Stop audio' : 'Listen to explanation'}
+              title={isSpeaking ? 'Stop audio' : 'Listen to explanation (Text to Speech)'}
             >
               {isSpeaking ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-slate-500" />}
-              <span className="hidden sm:inline">{isSpeaking ? 'Stop' : 'Listen'}</span>
+              <span className="hidden sm:inline">{isSpeaking ? 'Stop Audio' : 'Listen'}</span>
             </button>
           )}
 
@@ -313,7 +313,7 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
             id="share-result-btn"
             type="button"
             onClick={handleShare}
-            className="inline-flex items-center gap-1 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 px-2.5 py-1.5 rounded-xl min-h-[38px] shadow-2xs transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-white border border-slate-200 hover:border-slate-300 hover:bg-slate-50 px-3 py-1.5 rounded-xl min-h-[38px] shadow-2xs transition-all cursor-pointer"
             title="Share with study group"
           >
             <Share2 className="w-3.5 h-3.5 text-slate-500" />
@@ -324,24 +324,24 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
             id="download-note-btn"
             type="button"
             onClick={handleDownload}
-            className="inline-flex items-center gap-1 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 px-2.5 py-1.5 rounded-xl min-h-[38px] shadow-2xs transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-white border border-slate-200 hover:border-slate-300 hover:bg-slate-50 px-3 py-1.5 rounded-xl min-h-[38px] shadow-2xs transition-all cursor-pointer"
             title="Save as study note (.md)"
           >
             <Download className="w-3.5 h-3.5 text-slate-500" />
-            <span className="hidden sm:inline">Save</span>
+            <span className="hidden sm:inline">Export .md</span>
           </button>
 
           <button
             id="copy-result-btn"
             type="button"
             onClick={handleCopy}
-            className="inline-flex items-center gap-1 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 px-2.5 py-1.5 rounded-xl min-h-[38px] shadow-2xs transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-white border border-slate-200 hover:border-slate-300 hover:bg-slate-50 px-3 py-1.5 rounded-xl min-h-[38px] shadow-2xs transition-all cursor-pointer"
             title="Copy answer to clipboard"
           >
             {copied ? (
               <>
                 <Check className="w-3.5 h-3.5 text-emerald-600" />
-                <span className="text-emerald-700 font-semibold">Copied</span>
+                <span className="text-emerald-700 font-bold">Copied!</span>
               </>
             ) : (
               <>
@@ -354,33 +354,38 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
       </div>
 
       {/* Query Card */}
-      <div className="bg-slate-100/90 border border-slate-200 rounded-xl p-3 sm:p-4 text-xs text-slate-700">
-        <div className="flex items-center justify-between mb-1">
-          <span className="font-bold text-slate-900 uppercase tracking-wide text-[11px]">
-            Your Question / Topic:
-          </span>
-          <span className="text-[11px] text-slate-400">Tap "Ask Another" to change topic</span>
+      <div className="bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-5 shadow-xs">
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-slate-400"></span>
+            <span className="font-bold text-slate-900 uppercase tracking-wider text-[11px]">
+              Academic Inquiry
+            </span>
+          </div>
+          <span className="text-[11px] text-slate-400 font-medium">Prompt Context</span>
         </div>
-        <p className="text-slate-700 italic font-medium whitespace-pre-wrap leading-relaxed">{prompt}</p>
+        <p className="text-slate-800 font-medium whitespace-pre-wrap leading-relaxed text-sm sm:text-base border-l-2 border-slate-300 pl-3 py-0.5">
+          {prompt}
+        </p>
       </div>
 
       {/* Formatted Answer Container */}
-      <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-6 shadow-xs">
+      <div className="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-7 shadow-xs">
         <div className="markdown-content text-slate-800 text-sm sm:text-base leading-relaxed space-y-3">
           <Markdown
             components={{
               h1: ({ children }) => (
-                <h1 className="text-lg sm:text-xl font-bold text-slate-900 mt-4 mb-2 pb-1 border-b border-slate-200">
+                <h1 className="text-lg sm:text-xl font-bold text-slate-900 mt-5 mb-2.5 pb-1.5 border-b border-slate-200/90 tracking-tight">
                   {children}
                 </h1>
               ),
               h2: ({ children }) => (
-                <h2 className="text-base sm:text-lg font-bold text-slate-900 mt-4 mb-2 flex items-center gap-2">
+                <h2 className="text-base sm:text-lg font-bold text-slate-900 mt-4 mb-2 flex items-center gap-2 tracking-tight">
                   {children}
                 </h2>
               ),
               h3: ({ children }) => (
-                <h3 className="text-sm sm:text-base font-semibold text-slate-800 mt-3 mb-1">
+                <h3 className="text-sm sm:text-base font-bold text-slate-800 mt-3 mb-1.5 tracking-tight">
                   {children}
                 </h3>
               ),
@@ -397,7 +402,7 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
               ),
               li: ({ children }) => <li className="leading-relaxed">{children}</li>,
               strong: ({ children }) => (
-                <strong className="font-semibold text-slate-900">{children}</strong>
+                <strong className="font-bold text-slate-900">{children}</strong>
               ),
               pre: ({ children }) => <>{children}</>,
               code: ({ children, className }) => {
@@ -405,58 +410,66 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
                 const isBlock = className || (typeof children === 'string' && children.includes('\n'));
                 if (isBlock) {
                   return (
-                    <div className="my-3 rounded-xl overflow-hidden border border-slate-800 bg-slate-950 text-slate-100 shadow-md">
-                      <div className="flex items-center justify-between px-3 py-1.5 bg-slate-900/90 border-b border-slate-800 text-[11px] text-slate-400">
-                        <span className="font-mono">Code Snippet</span>
+                    <div className="my-4 rounded-xl overflow-hidden border border-slate-800 bg-[#0d1117] text-slate-100 shadow-sm">
+                      {/* Code Header Bar */}
+                      <div className="flex items-center justify-between px-3.5 py-2 bg-[#161b22] border-b border-slate-800 text-[11px] text-slate-400">
+                        <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1.5">
+                            <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+                            <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+                          </div>
+                          <span className="font-mono text-slate-300 font-medium pl-1">Code Block</span>
+                        </div>
                         <button
                           type="button"
                           onClick={() => handleCopyCode(codeString)}
-                          className="flex items-center gap-1 text-slate-400 hover:text-white px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 transition-colors cursor-pointer"
+                          className="flex items-center gap-1.5 text-slate-300 hover:text-white px-2.5 py-1 rounded-md bg-slate-800/80 hover:bg-slate-700 transition-colors cursor-pointer text-xs"
                         >
                           {copiedCodeText === codeString ? (
                             <>
-                              <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-                              <span className="text-emerald-400 font-medium">Copied</span>
+                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                              <span className="text-emerald-400 font-semibold">Copied!</span>
                             </>
                           ) : (
                             <>
-                              <Copy className="w-3 h-3" />
+                              <Copy className="w-3.5 h-3.5" />
                               <span>Copy Code</span>
                             </>
                           )}
                         </button>
                       </div>
-                      <div className="p-3 sm:p-4 text-xs sm:text-sm font-mono overflow-x-auto">
+                      <div className="p-4 text-xs sm:text-sm font-mono overflow-x-auto leading-relaxed">
                         <code>{children}</code>
                       </div>
                     </div>
                   );
                 }
                 return (
-                  <code className="px-1.5 py-0.5 rounded-md bg-slate-100 text-blue-700 font-mono text-xs sm:text-sm border border-slate-200">
+                  <code className="px-1.5 py-0.5 rounded-md bg-slate-100 text-blue-700 font-mono text-xs sm:text-sm border border-slate-200 font-medium">
                     {children}
                   </code>
                 );
               },
               blockquote: ({ children }) => (
-                <blockquote className="border-l-4 border-blue-500 pl-3.5 py-1.5 my-3 bg-blue-50/50 rounded-r-lg text-slate-700 italic text-sm">
+                <blockquote className="border-l-4 border-blue-600 pl-4 py-2 my-3.5 bg-blue-50/40 rounded-r-xl text-slate-700 italic text-sm sm:text-base">
                   {children}
                 </blockquote>
               ),
               table: ({ children }) => (
-                <div className="overflow-x-auto my-3 border border-slate-200 rounded-xl">
+                <div className="overflow-x-auto my-3.5 border border-slate-200 rounded-xl shadow-2xs">
                   <table className="min-w-full divide-y divide-slate-200 text-xs sm:text-sm">
                     {children}
                   </table>
                 </div>
               ),
               th: ({ children }) => (
-                <th className="bg-slate-100 px-3 py-2 text-left font-semibold text-slate-800">
+                <th className="bg-slate-100/90 px-3.5 py-2.5 text-left font-bold text-slate-800 text-xs uppercase tracking-wider">
                   {children}
                 </th>
               ),
               td: ({ children }) => (
-                <td className="px-3 py-2 border-t border-slate-200 text-slate-700">
+                <td className="px-3.5 py-2.5 border-t border-slate-200 text-slate-700">
                   {children}
                 </td>
               ),
@@ -468,12 +481,15 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
       </div>
 
       {/* Follow-Up Questions Section */}
-      <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-xs space-y-3">
-        <div className="flex items-center gap-2">
-          <HelpCircle className="w-4 h-4 text-blue-600" />
-          <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wide">
-            Need Clarification or More Practice?
-          </h4>
+      <div className="bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-5 shadow-xs space-y-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <HelpCircle className="w-4 h-4 text-blue-600" />
+            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+              Need Clarification or More Practice?
+            </h4>
+          </div>
+          <span className="text-[11px] text-slate-400 font-medium">Follow-Up Clarifications</span>
         </div>
 
         {/* Quick follow up prompt chips */}
@@ -484,7 +500,7 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
               type="button"
               disabled={loadingFollowUp}
               onClick={() => handleSendFollowUp(item.query)}
-              className="text-left text-xs font-medium text-slate-700 hover:text-blue-700 bg-slate-50 hover:bg-blue-50/60 p-2.5 rounded-xl border border-slate-200 hover:border-blue-300 transition-all disabled:opacity-50 touch-manipulation"
+              className="text-left text-xs font-medium text-slate-700 hover:text-blue-800 bg-slate-50 hover:bg-blue-50/70 p-2.5 rounded-xl border border-slate-200/80 hover:border-blue-300 transition-all disabled:opacity-50 touch-manipulation cursor-pointer"
             >
               {item.label}
             </button>
@@ -505,15 +521,15 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
               }
             }}
             disabled={loadingFollowUp}
-            placeholder="Ask a follow-up question about this topic..."
-            className="flex-1 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 focus:bg-white transition-all disabled:opacity-60"
+            placeholder="Ask a follow-up question or request more details..."
+            className="flex-1 text-xs sm:text-sm bg-slate-50/70 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/15 focus:bg-white transition-all disabled:opacity-60 text-slate-900 placeholder:text-slate-400"
           />
           <button
             id="send-followup-btn"
             type="button"
             disabled={loadingFollowUp || !followUpInput.trim()}
             onClick={() => handleSendFollowUp()}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2.5 rounded-xl flex items-center gap-1.5 text-xs transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-h-[40px] shrink-0"
+            className="bg-slate-900 hover:bg-blue-600 active:bg-blue-700 text-white font-semibold px-4 py-2.5 rounded-xl flex items-center gap-1.5 text-xs transition-all disabled:opacity-40 disabled:cursor-not-allowed min-h-[40px] shrink-0 cursor-pointer shadow-xs"
           >
             {loadingFollowUp ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -530,13 +546,13 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
       {/* Academic Disclaimer */}
       <div
         id="result-academic-disclaimer"
-        className="p-3 sm:p-3.5 rounded-xl bg-amber-50/80 border border-amber-200/90 flex items-start gap-2.5 text-left text-amber-900 text-xs"
+        className="p-3.5 sm:p-4 rounded-xl bg-amber-50/70 border border-amber-200/80 flex items-start gap-3 text-left text-amber-900 text-xs"
         role="note"
       >
         <ShieldAlert className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
         <p className="leading-relaxed text-[11px] sm:text-xs text-amber-800">
-          <span className="font-semibold text-amber-900">Disclaimer: </span>
-          AI-generated answers may contain mistakes. Please verify important academic information with your textbook or teacher.
+          <strong className="font-semibold text-amber-950">Academic Disclaimer: </strong>
+          AI-generated responses are intended for study assistance and conceptual understanding. Please verify critical course material, formulas, and definitions with your official textbook or professor.
         </p>
       </div>
     </div>
