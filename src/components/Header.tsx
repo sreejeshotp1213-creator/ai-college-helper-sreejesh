@@ -32,8 +32,8 @@ export const Header: React.FC<HeaderProps> = ({
             <h1 className="text-sm sm:text-base font-bold text-slate-900 tracking-tight group-hover:text-blue-700 transition-colors">
               AI College Helper
             </h1>
-            <span className="text-[11px] text-slate-500 font-normal mt-0.5">
-              AI Study Assistant
+            <span className="text-[11px] text-slate-500 font-medium mt-0.5">
+              Built by Sreejesh • BCA Student
             </span>
           </div>
         </button>
